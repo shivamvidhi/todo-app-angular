@@ -6,10 +6,7 @@ import { Todo } from './todo.model';
 })
 export class DataService {
 
-  todos: Todo[] =[
-    new Todo("hello"),
-    new Todo("halla",true)
-  ]
+  todos: Todo[] =[]
 
   constructor() { }
 
