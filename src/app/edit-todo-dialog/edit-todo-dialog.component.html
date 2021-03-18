@@ -3,7 +3,12 @@
     <form #form="ngForm" (ngSubmit)="onFormSubmit(form)">
         <div class="field">
             <div class="control">
-                <input #todotask="ngModel" [ngModel] = "todo.text" type="text" class="input" placeholder="type todo text" name="text"(keyup)="duplicateCheck(todotask.value)">
+                <input #todotask="ngModel" [ngModel] = "todo.text" type="text" required minlength="2" class="input" placeholder="type todo text" name="text"(keyup)="duplicateCheck(todotask.value)">
+            </div>
+            <div class="container" *ngIf="todotask.invalid && showValidationErrors">
+                <p class="help is-danger" *ngIf="todotask.errors.required">Please enter a Todo</p>
+                <p class="help is-danger" *ngIf="todotask.errors.minlength">Todo's text must be atleast 2 characters</p>
+                
             </div>
             <p class="help is-danger" *ngIf="duplicate">This task is already present</p>
         </div>

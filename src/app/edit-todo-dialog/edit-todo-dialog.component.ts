@@ -13,6 +13,7 @@ export class EditTodoDialogComponent implements OnInit {
 
 
   todos:Todo[];
+  showValidationErrors:boolean = false;
   duplicate:boolean = false;
   constructor(public dialogRef:MatDialogRef<EditTodoDialogComponent>,
   @Inject(MAT_DIALOG_DATA) public todo:Todo, private dataService:DataService) { }
@@ -26,6 +27,11 @@ export class EditTodoDialogComponent implements OnInit {
     this.dialogRef.close();
   }
   onFormSubmit(form:NgForm){
+    if(form.invalid){
+
+      return this.showValidationErrors = true;
+
+    }
     if(!this.duplicate)
     {
       const updatedTodo ={
